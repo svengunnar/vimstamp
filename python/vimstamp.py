@@ -1,8 +1,5 @@
 import vim
-
-from simplify import simplify
-from simplify import get_time_stamp
-from simplify import set_time_stamp
+from simplify import *
 
 def vimstamp_init():
     vim.command('''
@@ -17,8 +14,8 @@ def vimstamp_init():
         endfunction
             ''')
 
-    vim.command("autocmd BufRead *.h :call VimStampOpenFile()")
-    vim.command("autocmd BufWritePost *.h :call VimStampWriteFile()")
+    vim.command("autocmd BufRead *.h,*.cpp :call VimStampOpenFile()")
+    vim.command("autocmd BufWritePost *.h,*.cpp :call VimStampWriteFile()")
 
     vim.vars["g:vimstamp_idx2stamp"] = {}
 

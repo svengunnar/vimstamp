@@ -1,17 +1,19 @@
 import re
 import os
-import md5
+import hashlib
 
-COMMENT_RE = re.compile("\/\/.*")
+COMMENT_RE = re.compile(r'\/\/.*')
 
 def simplify(lines):
     s = ""
     for l in lines:
-        mod = l.strip(' \t\n\r')
-        if not COMMENT_RE.match(mod):
-            s += mod
+        if COMMENT_RE.match(mod):
+            continue
 
-    return md5.new(s).digest()
+        mod = l.strip(' \t\n\r')
+        s += mod
+
+    return hashlib.sha224(s).hexdigest()
 
 def get_time_stamp(path):
     return os.path.getmtime(path)
