@@ -27,6 +27,10 @@ def vimstamp_open_file():
     vim.vars["g:vimstamp_idx2stamp"][str(vim.current.window.buffer.number)] = (s, ts, path)
 
 def vimstamp_write_file():
+
+    if str(vim.current.window.buffer.number) not in vim.vars["g:vimstamp_idx2stamp"]:
+        return
+
     s, ts, path = vim.vars["g:vimstamp_idx2stamp"][str(vim.current.window.buffer.number)]
 
     s_new = simplify(vim.current.buffer)

@@ -7,7 +7,7 @@ COMMENT_RE = re.compile(r'\/\/.*')
 def simplify(lines):
     s = ""
     for l in lines:
-        if COMMENT_RE.match(mod):
+        if COMMENT_RE.match(l):
             continue
 
         mod = l.strip(' \t\n\r')
